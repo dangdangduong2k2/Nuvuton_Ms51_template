@@ -564,7 +564,7 @@ _HAL_GPIO_CONFIG_PIN_PARM_3:
 ;default_state             Allocated with name '_HAL_GPIO_CONFIG_PIN_PARM_3'
 ;pin                       Allocated to registers r7 
 ;------------------------------------------------------------
-;	lib/gpio.c:5: void HAL_GPIO_CONFIG_PIN(uint8_t pin, uint8_t mode, uint8_t default_state)
+;	lib/1.gpio/gpio.c:5: void HAL_GPIO_CONFIG_PIN(uint8_t pin, uint8_t mode, uint8_t default_state)
 ;	-----------------------------------------
 ;	 function HAL_GPIO_CONFIG_PIN
 ;	-----------------------------------------
@@ -577,7 +577,7 @@ _HAL_GPIO_CONFIG_PIN:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	lib/gpio.c:7: switch (pin)
+;	lib/1.gpio/gpio.c:7: switch (pin)
 	mov	a,dpl
 	mov	r7,a
 	add	a,#0xff - 0x1e
@@ -658,9 +658,9 @@ _HAL_GPIO_CONFIG_PIN:
 	.db	00222$>>8
 	.db	00222$>>8
 	.db	00213$>>8
-;	lib/gpio.c:9: case 0:
+;	lib/1.gpio/gpio.c:9: case 0:
 00101$:
-;	lib/gpio.c:10: switch (mode)
+;	lib/1.gpio/gpio.c:10: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00107$
@@ -674,44 +674,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00103$
 	ljmp	00104$
 	ljmp	00105$
-;	lib/gpio.c:12: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:12: case QUASI_MODE:
 00102$:
-;	lib/gpio.c:13: P00_QUASI_MODE;
+;	lib/1.gpio/gpio.c:13: P00_QUASI_MODE;
 	anl	_P0M1,#0xfe
 	anl	_P0M2,#0xfe
-;	lib/gpio.c:14: break;
-;	lib/gpio.c:15: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:14: break;
+;	lib/1.gpio/gpio.c:15: case PUSH_PULL_MODE:
 	sjmp	00107$
 00103$:
-;	lib/gpio.c:16: P00_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:16: P00_PUSHPULL_MODE;
 	anl	_P0M1,#0xfe
 	orl	_P0M2,#0x01
-;	lib/gpio.c:17: break;
-;	lib/gpio.c:18: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:17: break;
+;	lib/1.gpio/gpio.c:18: case INPUT_ONLY_MODE:
 	sjmp	00107$
 00104$:
-;	lib/gpio.c:19: P00_INPUT_MODE;
+;	lib/1.gpio/gpio.c:19: P00_INPUT_MODE;
 	orl	_P0M1,#0x01
 	anl	_P0M2,#0xfe
-;	lib/gpio.c:20: break;
-;	lib/gpio.c:21: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:20: break;
+;	lib/1.gpio/gpio.c:21: case OPEN_DRAIN_MODE:
 	sjmp	00107$
 00105$:
-;	lib/gpio.c:22: P00_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:22: P00_OPENDRAIN_MODE;
 	orl	_P0M1,#0x01
 	orl	_P0M2,#0x01
-;	lib/gpio.c:26: }
+;	lib/1.gpio/gpio.c:26: }
 00107$:
-;	lib/gpio.c:27: P00 = default_state;
+;	lib/1.gpio/gpio.c:27: P00 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P00,c
-;	lib/gpio.c:28: break;
+;	lib/1.gpio/gpio.c:28: break;
 	ret
-;	lib/gpio.c:29: case 1:
+;	lib/1.gpio/gpio.c:29: case 1:
 00108$:
-;	lib/gpio.c:30: switch (mode)
+;	lib/1.gpio/gpio.c:30: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00114$
@@ -725,44 +725,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00110$
 	ljmp	00111$
 	ljmp	00112$
-;	lib/gpio.c:32: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:32: case QUASI_MODE:
 00109$:
-;	lib/gpio.c:33: P01_QUASI_MODE;
+;	lib/1.gpio/gpio.c:33: P01_QUASI_MODE;
 	anl	_P0M1,#0xfd
 	anl	_P0M2,#0xfd
-;	lib/gpio.c:34: break;
-;	lib/gpio.c:35: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:34: break;
+;	lib/1.gpio/gpio.c:35: case PUSH_PULL_MODE:
 	sjmp	00114$
 00110$:
-;	lib/gpio.c:36: P01_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:36: P01_PUSHPULL_MODE;
 	anl	_P0M1,#0xfd
 	orl	_P0M2,#0x02
-;	lib/gpio.c:37: break;
-;	lib/gpio.c:38: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:37: break;
+;	lib/1.gpio/gpio.c:38: case INPUT_ONLY_MODE:
 	sjmp	00114$
 00111$:
-;	lib/gpio.c:39: P01_INPUT_MODE;
+;	lib/1.gpio/gpio.c:39: P01_INPUT_MODE;
 	orl	_P0M1,#0x02
 	anl	_P0M2,#0xfd
-;	lib/gpio.c:40: break;
-;	lib/gpio.c:41: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:40: break;
+;	lib/1.gpio/gpio.c:41: case OPEN_DRAIN_MODE:
 	sjmp	00114$
 00112$:
-;	lib/gpio.c:42: P01_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:42: P01_OPENDRAIN_MODE;
 	orl	_P0M1,#0x02
 	orl	_P0M2,#0x02
-;	lib/gpio.c:46: }
+;	lib/1.gpio/gpio.c:46: }
 00114$:
-;	lib/gpio.c:47: P01 = default_state;
+;	lib/1.gpio/gpio.c:47: P01 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P01,c
-;	lib/gpio.c:48: break;
+;	lib/1.gpio/gpio.c:48: break;
 	ret
-;	lib/gpio.c:49: case 2:
+;	lib/1.gpio/gpio.c:49: case 2:
 00115$:
-;	lib/gpio.c:50: switch (mode)
+;	lib/1.gpio/gpio.c:50: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00121$
@@ -776,44 +776,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00117$
 	ljmp	00118$
 	ljmp	00119$
-;	lib/gpio.c:52: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:52: case QUASI_MODE:
 00116$:
-;	lib/gpio.c:53: P02_QUASI_MODE;
+;	lib/1.gpio/gpio.c:53: P02_QUASI_MODE;
 	anl	_P0M1,#0xfb
 	anl	_P0M2,#0xfb
-;	lib/gpio.c:54: break;
-;	lib/gpio.c:55: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:54: break;
+;	lib/1.gpio/gpio.c:55: case PUSH_PULL_MODE:
 	sjmp	00121$
 00117$:
-;	lib/gpio.c:56: P02_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:56: P02_PUSHPULL_MODE;
 	anl	_P0M1,#0xfb
 	orl	_P0M2,#0x04
-;	lib/gpio.c:57: break;
-;	lib/gpio.c:58: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:57: break;
+;	lib/1.gpio/gpio.c:58: case INPUT_ONLY_MODE:
 	sjmp	00121$
 00118$:
-;	lib/gpio.c:59: P02_INPUT_MODE;
+;	lib/1.gpio/gpio.c:59: P02_INPUT_MODE;
 	orl	_P0M1,#0x04
 	anl	_P0M2,#0xfb
-;	lib/gpio.c:60: break;
-;	lib/gpio.c:61: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:60: break;
+;	lib/1.gpio/gpio.c:61: case OPEN_DRAIN_MODE:
 	sjmp	00121$
 00119$:
-;	lib/gpio.c:62: P02_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:62: P02_OPENDRAIN_MODE;
 	orl	_P0M1,#0x04
 	orl	_P0M2,#0x04
-;	lib/gpio.c:66: }
+;	lib/1.gpio/gpio.c:66: }
 00121$:
-;	lib/gpio.c:67: P02 = default_state;
+;	lib/1.gpio/gpio.c:67: P02 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P02,c
-;	lib/gpio.c:68: break;
+;	lib/1.gpio/gpio.c:68: break;
 	ret
-;	lib/gpio.c:69: case 3:
+;	lib/1.gpio/gpio.c:69: case 3:
 00122$:
-;	lib/gpio.c:70: switch (mode)
+;	lib/1.gpio/gpio.c:70: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00128$
@@ -827,44 +827,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00124$
 	ljmp	00125$
 	ljmp	00126$
-;	lib/gpio.c:72: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:72: case QUASI_MODE:
 00123$:
-;	lib/gpio.c:73: P03_QUASI_MODE;
+;	lib/1.gpio/gpio.c:73: P03_QUASI_MODE;
 	anl	_P0M1,#0xf7
 	anl	_P0M2,#0xf7
-;	lib/gpio.c:74: break;
-;	lib/gpio.c:75: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:74: break;
+;	lib/1.gpio/gpio.c:75: case PUSH_PULL_MODE:
 	sjmp	00128$
 00124$:
-;	lib/gpio.c:76: P03_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:76: P03_PUSHPULL_MODE;
 	anl	_P0M1,#0xf7
 	orl	_P0M2,#0x08
-;	lib/gpio.c:77: break;
-;	lib/gpio.c:78: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:77: break;
+;	lib/1.gpio/gpio.c:78: case INPUT_ONLY_MODE:
 	sjmp	00128$
 00125$:
-;	lib/gpio.c:79: P03_INPUT_MODE;
+;	lib/1.gpio/gpio.c:79: P03_INPUT_MODE;
 	orl	_P0M1,#0x08
 	anl	_P0M2,#0xf7
-;	lib/gpio.c:80: break;
-;	lib/gpio.c:81: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:80: break;
+;	lib/1.gpio/gpio.c:81: case OPEN_DRAIN_MODE:
 	sjmp	00128$
 00126$:
-;	lib/gpio.c:82: P03_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:82: P03_OPENDRAIN_MODE;
 	orl	_P0M1,#0x08
 	orl	_P0M2,#0x08
-;	lib/gpio.c:86: }
+;	lib/1.gpio/gpio.c:86: }
 00128$:
-;	lib/gpio.c:87: P03 = default_state;
+;	lib/1.gpio/gpio.c:87: P03 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P03,c
-;	lib/gpio.c:88: break;
+;	lib/1.gpio/gpio.c:88: break;
 	ret
-;	lib/gpio.c:89: case 4:
+;	lib/1.gpio/gpio.c:89: case 4:
 00129$:
-;	lib/gpio.c:90: switch (mode)
+;	lib/1.gpio/gpio.c:90: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00135$
@@ -878,44 +878,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00131$
 	ljmp	00132$
 	ljmp	00133$
-;	lib/gpio.c:92: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:92: case QUASI_MODE:
 00130$:
-;	lib/gpio.c:93: P04_QUASI_MODE;
+;	lib/1.gpio/gpio.c:93: P04_QUASI_MODE;
 	anl	_P0M1,#0xef
 	anl	_P0M2,#0xef
-;	lib/gpio.c:94: break;
-;	lib/gpio.c:95: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:94: break;
+;	lib/1.gpio/gpio.c:95: case PUSH_PULL_MODE:
 	sjmp	00135$
 00131$:
-;	lib/gpio.c:96: P04_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:96: P04_PUSHPULL_MODE;
 	anl	_P0M1,#0xef
 	orl	_P0M2,#0x10
-;	lib/gpio.c:97: break;
-;	lib/gpio.c:98: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:97: break;
+;	lib/1.gpio/gpio.c:98: case INPUT_ONLY_MODE:
 	sjmp	00135$
 00132$:
-;	lib/gpio.c:99: P04_INPUT_MODE;
+;	lib/1.gpio/gpio.c:99: P04_INPUT_MODE;
 	orl	_P0M1,#0x10
 	anl	_P0M2,#0xef
-;	lib/gpio.c:100: break;
-;	lib/gpio.c:101: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:100: break;
+;	lib/1.gpio/gpio.c:101: case OPEN_DRAIN_MODE:
 	sjmp	00135$
 00133$:
-;	lib/gpio.c:102: P04_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:102: P04_OPENDRAIN_MODE;
 	orl	_P0M1,#0x10
 	orl	_P0M2,#0x10
-;	lib/gpio.c:106: }
+;	lib/1.gpio/gpio.c:106: }
 00135$:
-;	lib/gpio.c:107: P04 = default_state;
+;	lib/1.gpio/gpio.c:107: P04 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P04,c
-;	lib/gpio.c:108: break;
+;	lib/1.gpio/gpio.c:108: break;
 	ret
-;	lib/gpio.c:109: case 5:
+;	lib/1.gpio/gpio.c:109: case 5:
 00136$:
-;	lib/gpio.c:110: switch (mode)
+;	lib/1.gpio/gpio.c:110: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00142$
@@ -929,44 +929,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00138$
 	ljmp	00139$
 	ljmp	00140$
-;	lib/gpio.c:112: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:112: case QUASI_MODE:
 00137$:
-;	lib/gpio.c:113: P05_QUASI_MODE;
+;	lib/1.gpio/gpio.c:113: P05_QUASI_MODE;
 	anl	_P0M1,#0xdf
 	anl	_P0M2,#0xdf
-;	lib/gpio.c:114: break;
-;	lib/gpio.c:115: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:114: break;
+;	lib/1.gpio/gpio.c:115: case PUSH_PULL_MODE:
 	sjmp	00142$
 00138$:
-;	lib/gpio.c:116: P05_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:116: P05_PUSHPULL_MODE;
 	anl	_P0M1,#0xdf
 	orl	_P0M2,#0x20
-;	lib/gpio.c:117: break;
-;	lib/gpio.c:118: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:117: break;
+;	lib/1.gpio/gpio.c:118: case INPUT_ONLY_MODE:
 	sjmp	00142$
 00139$:
-;	lib/gpio.c:119: P05_INPUT_MODE;
+;	lib/1.gpio/gpio.c:119: P05_INPUT_MODE;
 	orl	_P0M1,#0x20
 	anl	_P0M2,#0xdf
-;	lib/gpio.c:120: break;
-;	lib/gpio.c:121: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:120: break;
+;	lib/1.gpio/gpio.c:121: case OPEN_DRAIN_MODE:
 	sjmp	00142$
 00140$:
-;	lib/gpio.c:122: P05_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:122: P05_OPENDRAIN_MODE;
 	orl	_P0M1,#0x20
 	orl	_P0M2,#0x20
-;	lib/gpio.c:126: }
+;	lib/1.gpio/gpio.c:126: }
 00142$:
-;	lib/gpio.c:127: P05 = default_state;
+;	lib/1.gpio/gpio.c:127: P05 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P05,c
-;	lib/gpio.c:128: break;
+;	lib/1.gpio/gpio.c:128: break;
 	ret
-;	lib/gpio.c:129: case 6:
+;	lib/1.gpio/gpio.c:129: case 6:
 00143$:
-;	lib/gpio.c:130: switch (mode)
+;	lib/1.gpio/gpio.c:130: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00149$
@@ -980,44 +980,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00145$
 	ljmp	00146$
 	ljmp	00147$
-;	lib/gpio.c:132: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:132: case QUASI_MODE:
 00144$:
-;	lib/gpio.c:133: P06_QUASI_MODE;
+;	lib/1.gpio/gpio.c:133: P06_QUASI_MODE;
 	anl	_P0M1,#0xbf
 	anl	_P0M2,#0xbf
-;	lib/gpio.c:134: break;
-;	lib/gpio.c:135: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:134: break;
+;	lib/1.gpio/gpio.c:135: case PUSH_PULL_MODE:
 	sjmp	00149$
 00145$:
-;	lib/gpio.c:136: P06_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:136: P06_PUSHPULL_MODE;
 	anl	_P0M1,#0xbf
 	orl	_P0M2,#0x40
-;	lib/gpio.c:137: break;
-;	lib/gpio.c:138: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:137: break;
+;	lib/1.gpio/gpio.c:138: case INPUT_ONLY_MODE:
 	sjmp	00149$
 00146$:
-;	lib/gpio.c:139: P06_INPUT_MODE;
+;	lib/1.gpio/gpio.c:139: P06_INPUT_MODE;
 	orl	_P0M1,#0x40
 	anl	_P0M2,#0xbf
-;	lib/gpio.c:140: break;
-;	lib/gpio.c:141: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:140: break;
+;	lib/1.gpio/gpio.c:141: case OPEN_DRAIN_MODE:
 	sjmp	00149$
 00147$:
-;	lib/gpio.c:142: P06_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:142: P06_OPENDRAIN_MODE;
 	orl	_P0M1,#0x40
 	orl	_P0M2,#0x40
-;	lib/gpio.c:146: }
+;	lib/1.gpio/gpio.c:146: }
 00149$:
-;	lib/gpio.c:147: P06 = default_state;
+;	lib/1.gpio/gpio.c:147: P06 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P06,c
-;	lib/gpio.c:148: break;
+;	lib/1.gpio/gpio.c:148: break;
 	ret
-;	lib/gpio.c:149: case 7:
+;	lib/1.gpio/gpio.c:149: case 7:
 00150$:
-;	lib/gpio.c:150: switch (mode)
+;	lib/1.gpio/gpio.c:150: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00156$
@@ -1031,44 +1031,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00152$
 	ljmp	00153$
 	ljmp	00154$
-;	lib/gpio.c:152: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:152: case QUASI_MODE:
 00151$:
-;	lib/gpio.c:153: P07_QUASI_MODE;
+;	lib/1.gpio/gpio.c:153: P07_QUASI_MODE;
 	anl	_P0M1,#0x7f
 	anl	_P0M2,#0x7f
-;	lib/gpio.c:154: break;
-;	lib/gpio.c:155: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:154: break;
+;	lib/1.gpio/gpio.c:155: case PUSH_PULL_MODE:
 	sjmp	00156$
 00152$:
-;	lib/gpio.c:156: P07_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:156: P07_PUSHPULL_MODE;
 	anl	_P0M1,#0x7f
 	orl	_P0M2,#0x80
-;	lib/gpio.c:157: break;
-;	lib/gpio.c:158: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:157: break;
+;	lib/1.gpio/gpio.c:158: case INPUT_ONLY_MODE:
 	sjmp	00156$
 00153$:
-;	lib/gpio.c:159: P07_INPUT_MODE;
+;	lib/1.gpio/gpio.c:159: P07_INPUT_MODE;
 	orl	_P0M1,#0x80
 	anl	_P0M2,#0x7f
-;	lib/gpio.c:160: break;
-;	lib/gpio.c:161: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:160: break;
+;	lib/1.gpio/gpio.c:161: case OPEN_DRAIN_MODE:
 	sjmp	00156$
 00154$:
-;	lib/gpio.c:162: P07_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:162: P07_OPENDRAIN_MODE;
 	orl	_P0M1,#0x80
 	orl	_P0M2,#0x80
-;	lib/gpio.c:166: }
+;	lib/1.gpio/gpio.c:166: }
 00156$:
-;	lib/gpio.c:167: P07 = default_state;
+;	lib/1.gpio/gpio.c:167: P07 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P07,c
-;	lib/gpio.c:168: break;
+;	lib/1.gpio/gpio.c:168: break;
 	ret
-;	lib/gpio.c:169: case 10:
+;	lib/1.gpio/gpio.c:169: case 10:
 00157$:
-;	lib/gpio.c:170: switch (mode)
+;	lib/1.gpio/gpio.c:170: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00163$
@@ -1082,44 +1082,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00159$
 	ljmp	00160$
 	ljmp	00161$
-;	lib/gpio.c:172: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:172: case QUASI_MODE:
 00158$:
-;	lib/gpio.c:173: P10_QUASI_MODE;
+;	lib/1.gpio/gpio.c:173: P10_QUASI_MODE;
 	anl	_P1M1,#0xfe
 	anl	_P1M2,#0xfe
-;	lib/gpio.c:174: break;
-;	lib/gpio.c:175: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:174: break;
+;	lib/1.gpio/gpio.c:175: case PUSH_PULL_MODE:
 	sjmp	00163$
 00159$:
-;	lib/gpio.c:176: P10_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:176: P10_PUSHPULL_MODE;
 	anl	_P1M1,#0xfe
 	orl	_P1M2,#0x01
-;	lib/gpio.c:177: break;
-;	lib/gpio.c:178: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:177: break;
+;	lib/1.gpio/gpio.c:178: case INPUT_ONLY_MODE:
 	sjmp	00163$
 00160$:
-;	lib/gpio.c:179: P10_INPUT_MODE;
+;	lib/1.gpio/gpio.c:179: P10_INPUT_MODE;
 	orl	_P1M1,#0x01
 	anl	_P1M2,#0xfe
-;	lib/gpio.c:180: break;
-;	lib/gpio.c:181: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:180: break;
+;	lib/1.gpio/gpio.c:181: case OPEN_DRAIN_MODE:
 	sjmp	00163$
 00161$:
-;	lib/gpio.c:182: P10_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:182: P10_OPENDRAIN_MODE;
 	orl	_P1M1,#0x01
 	orl	_P1M2,#0x01
-;	lib/gpio.c:186: }
+;	lib/1.gpio/gpio.c:186: }
 00163$:
-;	lib/gpio.c:187: P10 = default_state;
+;	lib/1.gpio/gpio.c:187: P10 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P10,c
-;	lib/gpio.c:188: break;
+;	lib/1.gpio/gpio.c:188: break;
 	ret
-;	lib/gpio.c:189: case 11:
+;	lib/1.gpio/gpio.c:189: case 11:
 00164$:
-;	lib/gpio.c:190: switch (mode)
+;	lib/1.gpio/gpio.c:190: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00170$
@@ -1133,44 +1133,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00166$
 	ljmp	00167$
 	ljmp	00168$
-;	lib/gpio.c:192: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:192: case QUASI_MODE:
 00165$:
-;	lib/gpio.c:193: P11_QUASI_MODE;
+;	lib/1.gpio/gpio.c:193: P11_QUASI_MODE;
 	anl	_P1M1,#0xfd
 	anl	_P1M2,#0xfd
-;	lib/gpio.c:194: break;
-;	lib/gpio.c:195: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:194: break;
+;	lib/1.gpio/gpio.c:195: case PUSH_PULL_MODE:
 	sjmp	00170$
 00166$:
-;	lib/gpio.c:196: P11_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:196: P11_PUSHPULL_MODE;
 	anl	_P1M1,#0xfd
 	orl	_P1M2,#0x02
-;	lib/gpio.c:197: break;
-;	lib/gpio.c:198: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:197: break;
+;	lib/1.gpio/gpio.c:198: case INPUT_ONLY_MODE:
 	sjmp	00170$
 00167$:
-;	lib/gpio.c:199: P11_INPUT_MODE;
+;	lib/1.gpio/gpio.c:199: P11_INPUT_MODE;
 	orl	_P1M1,#0x02
 	anl	_P1M2,#0xfd
-;	lib/gpio.c:200: break;
-;	lib/gpio.c:201: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:200: break;
+;	lib/1.gpio/gpio.c:201: case OPEN_DRAIN_MODE:
 	sjmp	00170$
 00168$:
-;	lib/gpio.c:202: P11_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:202: P11_OPENDRAIN_MODE;
 	orl	_P1M1,#0x02
 	orl	_P1M2,#0x02
-;	lib/gpio.c:206: }
+;	lib/1.gpio/gpio.c:206: }
 00170$:
-;	lib/gpio.c:207: P11 = default_state;
+;	lib/1.gpio/gpio.c:207: P11 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P11,c
-;	lib/gpio.c:208: break;
+;	lib/1.gpio/gpio.c:208: break;
 	ret
-;	lib/gpio.c:209: case 12:
+;	lib/1.gpio/gpio.c:209: case 12:
 00171$:
-;	lib/gpio.c:210: switch (mode)
+;	lib/1.gpio/gpio.c:210: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00177$
@@ -1184,44 +1184,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00173$
 	ljmp	00174$
 	ljmp	00175$
-;	lib/gpio.c:212: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:212: case QUASI_MODE:
 00172$:
-;	lib/gpio.c:213: P12_QUASI_MODE;
+;	lib/1.gpio/gpio.c:213: P12_QUASI_MODE;
 	anl	_P1M1,#0xfb
 	anl	_P1M2,#0xfb
-;	lib/gpio.c:214: break;
-;	lib/gpio.c:215: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:214: break;
+;	lib/1.gpio/gpio.c:215: case PUSH_PULL_MODE:
 	sjmp	00177$
 00173$:
-;	lib/gpio.c:216: P12_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:216: P12_PUSHPULL_MODE;
 	anl	_P1M1,#0xfb
 	orl	_P1M2,#0x04
-;	lib/gpio.c:217: break;
-;	lib/gpio.c:218: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:217: break;
+;	lib/1.gpio/gpio.c:218: case INPUT_ONLY_MODE:
 	sjmp	00177$
 00174$:
-;	lib/gpio.c:219: P12_INPUT_MODE;
+;	lib/1.gpio/gpio.c:219: P12_INPUT_MODE;
 	orl	_P1M1,#0x04
 	anl	_P1M2,#0xfb
-;	lib/gpio.c:220: break;
-;	lib/gpio.c:221: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:220: break;
+;	lib/1.gpio/gpio.c:221: case OPEN_DRAIN_MODE:
 	sjmp	00177$
 00175$:
-;	lib/gpio.c:222: P12_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:222: P12_OPENDRAIN_MODE;
 	orl	_P1M1,#0x04
 	orl	_P1M2,#0x04
-;	lib/gpio.c:226: }
+;	lib/1.gpio/gpio.c:226: }
 00177$:
-;	lib/gpio.c:227: P12 = default_state;
+;	lib/1.gpio/gpio.c:227: P12 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P12,c
-;	lib/gpio.c:228: break;
+;	lib/1.gpio/gpio.c:228: break;
 	ret
-;	lib/gpio.c:229: case 13:
+;	lib/1.gpio/gpio.c:229: case 13:
 00178$:
-;	lib/gpio.c:230: switch (mode)
+;	lib/1.gpio/gpio.c:230: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00184$
@@ -1235,44 +1235,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00180$
 	ljmp	00181$
 	ljmp	00182$
-;	lib/gpio.c:232: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:232: case QUASI_MODE:
 00179$:
-;	lib/gpio.c:233: P13_QUASI_MODE;
+;	lib/1.gpio/gpio.c:233: P13_QUASI_MODE;
 	anl	_P1M1,#0xf7
 	anl	_P1M2,#0xf7
-;	lib/gpio.c:234: break;
-;	lib/gpio.c:235: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:234: break;
+;	lib/1.gpio/gpio.c:235: case PUSH_PULL_MODE:
 	sjmp	00184$
 00180$:
-;	lib/gpio.c:236: P13_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:236: P13_PUSHPULL_MODE;
 	anl	_P1M1,#0xf7
 	orl	_P1M2,#0x08
-;	lib/gpio.c:237: break;
-;	lib/gpio.c:238: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:237: break;
+;	lib/1.gpio/gpio.c:238: case INPUT_ONLY_MODE:
 	sjmp	00184$
 00181$:
-;	lib/gpio.c:239: P13_INPUT_MODE;
+;	lib/1.gpio/gpio.c:239: P13_INPUT_MODE;
 	orl	_P1M1,#0x08
 	anl	_P1M2,#0xf7
-;	lib/gpio.c:240: break;
-;	lib/gpio.c:241: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:240: break;
+;	lib/1.gpio/gpio.c:241: case OPEN_DRAIN_MODE:
 	sjmp	00184$
 00182$:
-;	lib/gpio.c:242: P13_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:242: P13_OPENDRAIN_MODE;
 	orl	_P1M1,#0x08
 	orl	_P1M2,#0x08
-;	lib/gpio.c:246: }
+;	lib/1.gpio/gpio.c:246: }
 00184$:
-;	lib/gpio.c:247: P13 = default_state;
+;	lib/1.gpio/gpio.c:247: P13 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P13,c
-;	lib/gpio.c:248: break;
+;	lib/1.gpio/gpio.c:248: break;
 	ret
-;	lib/gpio.c:249: case 14:
+;	lib/1.gpio/gpio.c:249: case 14:
 00185$:
-;	lib/gpio.c:250: switch (mode)
+;	lib/1.gpio/gpio.c:250: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00191$
@@ -1286,44 +1286,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00187$
 	ljmp	00188$
 	ljmp	00189$
-;	lib/gpio.c:252: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:252: case QUASI_MODE:
 00186$:
-;	lib/gpio.c:253: P14_QUASI_MODE;
+;	lib/1.gpio/gpio.c:253: P14_QUASI_MODE;
 	anl	_P1M1,#0xef
 	anl	_P1M2,#0xef
-;	lib/gpio.c:254: break;
-;	lib/gpio.c:255: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:254: break;
+;	lib/1.gpio/gpio.c:255: case PUSH_PULL_MODE:
 	sjmp	00191$
 00187$:
-;	lib/gpio.c:256: P14_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:256: P14_PUSHPULL_MODE;
 	anl	_P1M1,#0xef
 	orl	_P1M2,#0x10
-;	lib/gpio.c:257: break;
-;	lib/gpio.c:258: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:257: break;
+;	lib/1.gpio/gpio.c:258: case INPUT_ONLY_MODE:
 	sjmp	00191$
 00188$:
-;	lib/gpio.c:259: P14_INPUT_MODE;
+;	lib/1.gpio/gpio.c:259: P14_INPUT_MODE;
 	orl	_P1M1,#0x10
 	anl	_P1M2,#0xef
-;	lib/gpio.c:260: break;
-;	lib/gpio.c:261: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:260: break;
+;	lib/1.gpio/gpio.c:261: case OPEN_DRAIN_MODE:
 	sjmp	00191$
 00189$:
-;	lib/gpio.c:262: P14_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:262: P14_OPENDRAIN_MODE;
 	orl	_P1M1,#0x10
 	orl	_P1M2,#0x10
-;	lib/gpio.c:266: }
+;	lib/1.gpio/gpio.c:266: }
 00191$:
-;	lib/gpio.c:267: P14 = default_state;
+;	lib/1.gpio/gpio.c:267: P14 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P14,c
-;	lib/gpio.c:268: break;
+;	lib/1.gpio/gpio.c:268: break;
 	ret
-;	lib/gpio.c:269: case 15:
+;	lib/1.gpio/gpio.c:269: case 15:
 00192$:
-;	lib/gpio.c:270: switch (mode)
+;	lib/1.gpio/gpio.c:270: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00198$
@@ -1337,44 +1337,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00194$
 	ljmp	00195$
 	ljmp	00196$
-;	lib/gpio.c:272: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:272: case QUASI_MODE:
 00193$:
-;	lib/gpio.c:273: P15_QUASI_MODE;
+;	lib/1.gpio/gpio.c:273: P15_QUASI_MODE;
 	anl	_P1M1,#0xdf
 	anl	_P1M2,#0xdf
-;	lib/gpio.c:274: break;
-;	lib/gpio.c:275: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:274: break;
+;	lib/1.gpio/gpio.c:275: case PUSH_PULL_MODE:
 	sjmp	00198$
 00194$:
-;	lib/gpio.c:276: P15_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:276: P15_PUSHPULL_MODE;
 	anl	_P1M1,#0xdf
 	orl	_P1M2,#0x20
-;	lib/gpio.c:277: break;
-;	lib/gpio.c:278: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:277: break;
+;	lib/1.gpio/gpio.c:278: case INPUT_ONLY_MODE:
 	sjmp	00198$
 00195$:
-;	lib/gpio.c:279: P15_INPUT_MODE;
+;	lib/1.gpio/gpio.c:279: P15_INPUT_MODE;
 	orl	_P1M1,#0x20
 	anl	_P1M2,#0xdf
-;	lib/gpio.c:280: break;
-;	lib/gpio.c:281: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:280: break;
+;	lib/1.gpio/gpio.c:281: case OPEN_DRAIN_MODE:
 	sjmp	00198$
 00196$:
-;	lib/gpio.c:282: P15_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:282: P15_OPENDRAIN_MODE;
 	orl	_P1M1,#0x20
 	orl	_P1M2,#0x20
-;	lib/gpio.c:286: }
+;	lib/1.gpio/gpio.c:286: }
 00198$:
-;	lib/gpio.c:287: P15 = default_state;
+;	lib/1.gpio/gpio.c:287: P15 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P15,c
-;	lib/gpio.c:288: break;
+;	lib/1.gpio/gpio.c:288: break;
 	ret
-;	lib/gpio.c:289: case 16:
+;	lib/1.gpio/gpio.c:289: case 16:
 00199$:
-;	lib/gpio.c:290: switch (mode)
+;	lib/1.gpio/gpio.c:290: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00205$
@@ -1388,44 +1388,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00201$
 	ljmp	00202$
 	ljmp	00203$
-;	lib/gpio.c:292: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:292: case QUASI_MODE:
 00200$:
-;	lib/gpio.c:293: P16_QUASI_MODE;
+;	lib/1.gpio/gpio.c:293: P16_QUASI_MODE;
 	anl	_P1M1,#0xbf
 	anl	_P1M2,#0xbf
-;	lib/gpio.c:294: break;
-;	lib/gpio.c:295: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:294: break;
+;	lib/1.gpio/gpio.c:295: case PUSH_PULL_MODE:
 	sjmp	00205$
 00201$:
-;	lib/gpio.c:296: P16_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:296: P16_PUSHPULL_MODE;
 	anl	_P1M1,#0xbf
 	orl	_P1M2,#0x40
-;	lib/gpio.c:297: break;
-;	lib/gpio.c:298: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:297: break;
+;	lib/1.gpio/gpio.c:298: case INPUT_ONLY_MODE:
 	sjmp	00205$
 00202$:
-;	lib/gpio.c:299: P16_INPUT_MODE;
+;	lib/1.gpio/gpio.c:299: P16_INPUT_MODE;
 	orl	_P1M1,#0x40
 	anl	_P1M2,#0xbf
-;	lib/gpio.c:300: break;
-;	lib/gpio.c:301: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:300: break;
+;	lib/1.gpio/gpio.c:301: case OPEN_DRAIN_MODE:
 	sjmp	00205$
 00203$:
-;	lib/gpio.c:302: P16_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:302: P16_OPENDRAIN_MODE;
 	orl	_P1M1,#0x40
 	orl	_P1M2,#0x40
-;	lib/gpio.c:306: }
+;	lib/1.gpio/gpio.c:306: }
 00205$:
-;	lib/gpio.c:307: P16 = default_state;
+;	lib/1.gpio/gpio.c:307: P16 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P16,c
-;	lib/gpio.c:308: break;
+;	lib/1.gpio/gpio.c:308: break;
 	ret
-;	lib/gpio.c:309: case 17:
+;	lib/1.gpio/gpio.c:309: case 17:
 00206$:
-;	lib/gpio.c:310: switch (mode)
+;	lib/1.gpio/gpio.c:310: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00212$
@@ -1439,44 +1439,44 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00208$
 	ljmp	00209$
 	ljmp	00210$
-;	lib/gpio.c:312: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:312: case QUASI_MODE:
 00207$:
-;	lib/gpio.c:313: P17_QUASI_MODE;
+;	lib/1.gpio/gpio.c:313: P17_QUASI_MODE;
 	anl	_P1M1,#0x7f
 	anl	_P1M2,#0x7f
-;	lib/gpio.c:314: break;
-;	lib/gpio.c:315: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:314: break;
+;	lib/1.gpio/gpio.c:315: case PUSH_PULL_MODE:
 	sjmp	00212$
 00208$:
-;	lib/gpio.c:316: P17_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:316: P17_PUSHPULL_MODE;
 	anl	_P1M1,#0x7f
 	orl	_P1M2,#0x80
-;	lib/gpio.c:317: break;
-;	lib/gpio.c:318: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:317: break;
+;	lib/1.gpio/gpio.c:318: case INPUT_ONLY_MODE:
 	sjmp	00212$
 00209$:
-;	lib/gpio.c:319: P17_INPUT_MODE;
+;	lib/1.gpio/gpio.c:319: P17_INPUT_MODE;
 	orl	_P1M1,#0x80
 	anl	_P1M2,#0x7f
-;	lib/gpio.c:320: break;
-;	lib/gpio.c:321: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:320: break;
+;	lib/1.gpio/gpio.c:321: case OPEN_DRAIN_MODE:
 	sjmp	00212$
 00210$:
-;	lib/gpio.c:322: P17_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:322: P17_OPENDRAIN_MODE;
 	orl	_P1M1,#0x80
 	orl	_P1M2,#0x80
-;	lib/gpio.c:326: }
+;	lib/1.gpio/gpio.c:326: }
 00212$:
-;	lib/gpio.c:327: P17 = default_state;
+;	lib/1.gpio/gpio.c:327: P17 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P17,c
-;	lib/gpio.c:328: break;
-;	lib/gpio.c:329: case 30:
+;	lib/1.gpio/gpio.c:328: break;
+;	lib/1.gpio/gpio.c:329: case 30:
 	ret
 00213$:
-;	lib/gpio.c:330: switch (mode)
+;	lib/1.gpio/gpio.c:330: switch (mode)
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_2
 	add	a,#0xff - 0x03
 	jc	00219$
@@ -1490,42 +1490,42 @@ _HAL_GPIO_CONFIG_PIN:
 	ljmp	00215$
 	ljmp	00216$
 	ljmp	00217$
-;	lib/gpio.c:332: case QUASI_MODE:
+;	lib/1.gpio/gpio.c:332: case QUASI_MODE:
 00214$:
-;	lib/gpio.c:333: P30_QUASI_MODE;
+;	lib/1.gpio/gpio.c:333: P30_QUASI_MODE;
 	anl	_P3M1,#0xfe
 	anl	_P3M2,#0xfe
-;	lib/gpio.c:334: break;
-;	lib/gpio.c:335: case PUSH_PULL_MODE:
+;	lib/1.gpio/gpio.c:334: break;
+;	lib/1.gpio/gpio.c:335: case PUSH_PULL_MODE:
 	sjmp	00219$
 00215$:
-;	lib/gpio.c:336: P30_PUSHPULL_MODE;
+;	lib/1.gpio/gpio.c:336: P30_PUSHPULL_MODE;
 	anl	_P3M1,#0xfe
 	orl	_P3M2,#0x01
-;	lib/gpio.c:337: break;
-;	lib/gpio.c:338: case INPUT_ONLY_MODE:
+;	lib/1.gpio/gpio.c:337: break;
+;	lib/1.gpio/gpio.c:338: case INPUT_ONLY_MODE:
 	sjmp	00219$
 00216$:
-;	lib/gpio.c:339: P30_INPUT_MODE;
+;	lib/1.gpio/gpio.c:339: P30_INPUT_MODE;
 	orl	_P3M1,#0x01
 	anl	_P3M2,#0xfe
-;	lib/gpio.c:340: break;
-;	lib/gpio.c:341: case OPEN_DRAIN_MODE:
+;	lib/1.gpio/gpio.c:340: break;
+;	lib/1.gpio/gpio.c:341: case OPEN_DRAIN_MODE:
 	sjmp	00219$
 00217$:
-;	lib/gpio.c:342: P30_OPENDRAIN_MODE;
+;	lib/1.gpio/gpio.c:342: P30_OPENDRAIN_MODE;
 	orl	_P3M1,#0x01
 	orl	_P3M2,#0x01
-;	lib/gpio.c:346: }
+;	lib/1.gpio/gpio.c:346: }
 00219$:
-;	lib/gpio.c:347: P30 = default_state;
+;	lib/1.gpio/gpio.c:347: P30 = default_state;
 ;	assignBit
 	mov	a,_HAL_GPIO_CONFIG_PIN_PARM_3
 	add	a,#0xff
 	mov	_P30,c
-;	lib/gpio.c:351: }
+;	lib/1.gpio/gpio.c:351: }
 00222$:
-;	lib/gpio.c:352: }
+;	lib/1.gpio/gpio.c:352: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

@@ -554,7 +554,7 @@ _MOSI	=	0x0080
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Delay_Init'
 ;------------------------------------------------------------
-;	lib/delay.c:6: void Delay_Init(void)
+;	lib/0.delay/delay.c:9: void Delay_Init(void)
 ;	-----------------------------------------
 ;	 function Delay_Init
 ;	-----------------------------------------
@@ -567,41 +567,41 @@ _Delay_Init:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	lib/delay.c:8: TMOD |= (1 << 0);
+;	lib/0.delay/delay.c:11: TMOD |= (1 << 0);
 	orl	_TMOD,#0x01
-;	lib/delay.c:9: TMOD &= ~(1 << 1);
+;	lib/0.delay/delay.c:12: TMOD &= ~(1 << 1);
 	anl	_TMOD,#0xfd
-;	lib/delay.c:10: CKCON |= (1 << 3);
+;	lib/0.delay/delay.c:13: CKCON |= (1 << 3);
 	orl	_CKCON,#0x08
-;	lib/delay.c:11: TMOD &= ~(1 << 2);
+;	lib/0.delay/delay.c:14: TMOD &= ~(1 << 2);
 	anl	_TMOD,#0xfb
-;	lib/delay.c:12: TMOD &= ~(1 << 3);
+;	lib/0.delay/delay.c:15: TMOD &= ~(1 << 3);
 	anl	_TMOD,#0xf7
-;	lib/delay.c:13: }
+;	lib/0.delay/delay.c:16: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'Delay_Ms'
 ;------------------------------------------------------------
 ;u16Delay                  Allocated to registers 
 ;------------------------------------------------------------
-;	lib/delay.c:15: void Delay_Ms(uint16_t u16Delay)
+;	lib/0.delay/delay.c:18: void Delay_Ms(uint16_t u16Delay)
 ;	-----------------------------------------
 ;	 function Delay_Ms
 ;	-----------------------------------------
 _Delay_Ms:
 	mov	r6, dpl
 	mov	r7, dph
-;	lib/delay.c:17: while (u16Delay) {
+;	lib/0.delay/delay.c:20: while (u16Delay) {
 00101$:
 	mov	a,r6
 	orl	a,r7
 	jz	00104$
-;	lib/delay.c:18: --u16Delay;
+;	lib/0.delay/delay.c:21: --u16Delay;
 	dec	r6
 	cjne	r6,#0xff,00120$
 	dec	r7
 00120$:
-;	lib/delay.c:19: delay_1ms();
+;	lib/0.delay/delay.c:22: delay_1ms();
 	push	ar7
 	push	ar6
 	lcall	_delay_1ms
@@ -609,24 +609,24 @@ _Delay_Ms:
 	pop	ar7
 	sjmp	00101$
 00104$:
-;	lib/delay.c:21: }
+;	lib/0.delay/delay.c:24: }
 	ret
 ;------------------------------------------------------------
 ;Allocation info for local variables in function 'delay_1ms'
 ;------------------------------------------------------------
-;	lib/delay.c:23: void delay_1ms(void)
+;	lib/0.delay/delay.c:26: void delay_1ms(void)
 ;	-----------------------------------------
 ;	 function delay_1ms
 ;	-----------------------------------------
 _delay_1ms:
-;	lib/delay.c:25: TH0 = 0;
+;	lib/0.delay/delay.c:28: TH0 = 0;
 	mov	_TH0,#0x00
-;	lib/delay.c:26: TL0 = 0;
+;	lib/0.delay/delay.c:29: TL0 = 0;
 	mov	_TL0,#0x00
-;	lib/delay.c:27: TR0 = 1;
+;	lib/0.delay/delay.c:30: TR0 = 1;
 ;	assignBit
 	setb	_TR0
-;	lib/delay.c:28: while (TH0 * 256 + TL0 < 16000) {
+;	lib/0.delay/delay.c:31: while (TH0 * 256 + TL0 < 16000) {
 00101$:
 	mov	r7,_TH0
 	mov	r6,#0x00
@@ -645,10 +645,10 @@ _delay_1ms:
 	xrl	a,#0x80
 	subb	a,#0xbe
 	jc	00101$
-;	lib/delay.c:30: TR0 = 0;
+;	lib/0.delay/delay.c:33: TR0 = 0;
 ;	assignBit
 	clr	_TR0
-;	lib/delay.c:32: }
+;	lib/0.delay/delay.c:35: }
 	ret
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

@@ -2,6 +2,8 @@
     "files.associations": {
         "gpio.h": "c",
         "delay.h": "c",
-        "ms51.h": "c"
+        "ms51.h": "c",
+        "function_define_ms51_16k.h": "c",
+        "stdint.h": "c"
     }
 }

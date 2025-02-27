@@ -1,6 +1,9 @@
 /* delay.c */
 #include "delay.h"
 
+
+
+
 static void delay_1ms(void);
 
 void Delay_Init(void)
@@ -28,4 +31,5 @@ void delay_1ms(void)
 	while (TH0 * 256 + TL0 < 16000) {
 	}
 	TR0 = 0;
+	
 }

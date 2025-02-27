@@ -1,5 +1,5 @@
 -muwx
--i blink.ihx
+-i template.ihx
 -M
 -b HOME = 0x0000
 -b XSEG = 0x0001
@@ -13,7 +13,7 @@
 -l liblong
 -l libfloat
 obj/main.rel
-obj/lib/delay.rel
-obj/lib/gpio.rel
+obj/lib/0.delay/delay.rel
+obj/lib/1.gpio/gpio.rel
 
 -e

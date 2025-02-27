@@ -10,8 +10,7 @@
 ;--------------------------------------------------------
 	.globl _main
 	.globl _Delay_Ms
-	.globl _Delay_Init
-	.globl _GPIO_Init
+	.globl _HAL_GPIO_CONFIG_PIN
 	.globl _MOSI
 	.globl _P00
 	.globl _MISO
@@ -593,25 +592,26 @@ _main:
 	ar2 = 0x02
 	ar1 = 0x01
 	ar0 = 0x00
-;	main.c:6: GPIO_Init();
-	lcall	_GPIO_Init
-;	main.c:7: Delay_Init();
-	lcall	_Delay_Init
-;	main.c:8: while (1) {
+;	main.c:6: HAL_GPIO_CONFIG_PIN(GPIO_PIN_15, PUSH_PULL_MODE, GPIO_PIN_SET);
+	mov	_HAL_GPIO_CONFIG_PIN_PARM_2,#0x01
+	mov	_HAL_GPIO_CONFIG_PIN_PARM_3,#0x01
+	mov	dpl, #0x0f
+	lcall	_HAL_GPIO_CONFIG_PIN
+;	main.c:9: while (1) {
 00102$:
-;	main.c:10: P15 = 0;
+;	main.c:11: P15 = 0;
 ;	assignBit
 	clr	_P15
-;	main.c:11: Delay_Ms(1000);
-	mov	dptr,#0x03e8
+;	main.c:12: Delay_Ms(50);
+	mov	dptr,#0x0032
 	lcall	_Delay_Ms
-;	main.c:12: P15 = 1;
+;	main.c:13: P15 = 1;
 ;	assignBit
 	setb	_P15
-;	main.c:13: Delay_Ms(1000);
-	mov	dptr,#0x03e8
+;	main.c:14: Delay_Ms(50);
+	mov	dptr,#0x0032
 	lcall	_Delay_Ms
-;	main.c:15: }
+;	main.c:16: }
 	sjmp	00102$
 	.area CSEG    (CODE)
 	.area CONST   (CODE)

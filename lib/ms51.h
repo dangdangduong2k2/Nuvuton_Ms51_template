@@ -7,6 +7,7 @@ Header file for Nuvoton ms51
 #define MS51_H_
 
 
+
 __sfr __at(0x80) P0;//					= 0x80;
 __sfr __at(0x81) SP;//					= 0x81;
 __sfr __at(0x82) DPL;//					= 0x82;

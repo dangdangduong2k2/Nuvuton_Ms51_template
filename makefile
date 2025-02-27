@@ -1,11 +1,13 @@
 CC = sdcc
-PRJ = blink
+PRJ = template
 FLASH_SIZE = 16384
 
-#do not edit
 OBJ_DIR = obj
 
-SRC = $(wildcard *.c) $(wildcard lib/*.c)
+SRC = $(wildcard *.c) $(shell find lib -name '*.c')
+INCLUDE_DIRS = $(shell find lib -type d)
+
+CFLAGS = $(foreach dir, $(INCLUDE_DIRS), -I$(dir))
 
 OBJS = $(patsubst %.c,obj/%.rel,$(SRC))
 
@@ -24,7 +26,7 @@ erase:
 
 obj/%.rel: %.c
 	@mkdir -p $(dir $@)
-	$(CC) -c $< -I. -o $@
+	$(CC) -c $< $(CFLAGS) -o $@
 
 clean:
 	rm -f obj/*.*
